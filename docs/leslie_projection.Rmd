@@ -43,16 +43,16 @@ Add line-by-line comments wheres prompted in the code below, explaining what eac
 # ------ WHAT HAPPENS HERE? ------ #
 # ------ comment line-by-line ---- #
 
-# The line below...
+# The line below sets a vector from 0 to 8 representing time. We will reun the loop over the length of this vector to return the population numbers for 8 years. 
 time_yr <- seq(from = 0, to = 8, by = 1)
 
-# The line below...
+# The line below creates and empty matrix that we will populate by running a loop over the time vector. It has columns matching the fish year 0 vectors and rows matching the time vector. 
 proj_year <- matrix(ncol = length(fish_year0), nrow = length(time_yr))
 
-# The line below...
+# The line below puts the values from year zero into the first row of out matrix. We can use these to populate the rest of the matrix. The brackets tell the code to put these values into the first row across all columns. 
 proj_year[1, ] <- fish_year0
 
-# The for loop below...
+# The for loop below runs the function over the next 8 years using each previous year's number. For rows 2 until the last row of the year vector, we take the dot product of the matrix with rates and the project year vector for the previous year to get the project year vector for the next year. 
 for (i in 2:length(time_yr)) {
   proj_year[i,] <- fish_leslie %*% proj_year[i-1,]
 }
